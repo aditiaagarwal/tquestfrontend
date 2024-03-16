@@ -1,0 +1,65 @@
+.navigation{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0px auto;
+  padding: 30px 0px;
+}
+
+.logo{
+  color:#122853;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.kchbhi{
+  display: flex;
+}
+.kchbhi span{
+  color: #122853;
+  font-weight: bolder;
+  font-size: 1.3rem;
+}
+.kchbhi img{
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: 0px;
+  left: -5px;
+}
+.menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 40px;
+}
+.menu li a{
+  margin: 0px 20px;
+  color: #303030;
+  font-weight: 500;
+  transition: all ease 0.3s;
+}
+.menu li a:hover{
+  color: #014dd5;
+}
+.nav-appointment-btn{
+  height: 45px;
+  margin: 10px;
+  padding: 0px 20px;
+  border-radius:4px;
+  background-color: #014dd5;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.small-nv{
+  display: flex;
+  padding: 10px;
+}

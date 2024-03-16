@@ -1,0 +1,9 @@
+.services-box-container {
+  display: flex;
+  justify-content: center;
+}
+
+.services-box-row {
+  display: flex;
+  gap: 20px; /* Adjust the gap between boxes as needed */
+}
