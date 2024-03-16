@@ -27,7 +27,7 @@ const Navbar = ({}) => {
           <a href="#" className="nav-appointment-btn">
             View Your Profile
           </a>
-          <a href="#" className="nav-appointment-btn">
+          <a href="login" className="nav-appointment-btn">
             Login
           </a>
         </div>

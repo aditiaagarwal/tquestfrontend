@@ -9,7 +9,7 @@ const Ourstory=({})=>{
             <img src={storyim} alt="" />
           </div>
           <div className="our-stroy-text">
-            <h2>Short Story About Our Work.</h2>
+            <h2>About Us!</h2>
             <p>
               As a medical professional passionate about accessible healthcare,
               I created this website to bridge the gap between expertise and
