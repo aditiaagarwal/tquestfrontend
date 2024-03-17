@@ -1,6 +1,6 @@
 import React from "react";
 import t1 from "../images/t1.jpg";
-import testim from "../images/testimonials-img.png";
+import testim from "../images/disabled_girl_edit.png";
 import './Testimonial.css';
 const Testimonial = ({}) => {
   return (
@@ -27,8 +27,8 @@ const Testimonial = ({}) => {
                         <img alt="" src={t1} />
                       </div>
                       <div className="t-profile-text">
-                        <strong>Xi-hunoi</strong>
-                        <span>From Japan</span>
+                        <strong>Aarushi Goyal</strong>
+                        <span>From India</span>
                         <div className="t-rating">
                           <i className="fa-solid fa-star" />
                           <i className="fa-solid fa-star" />

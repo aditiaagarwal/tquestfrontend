@@ -1,5 +1,5 @@
 import React from "react";
-import storyim from "../images/story_img3.png";
+import storyim from "../images/story_img4.jpg";
 import './OurStory.css';
 const Ourstory=({})=>{
   return(

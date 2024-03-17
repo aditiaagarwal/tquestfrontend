@@ -63,6 +63,14 @@ const Fourtsks1 = ({}) => {
       <div className="services-box-container">
         <div className="swiper mySwiperservices">
           <div className="swiper-wrapper">
+          <div className="swiper-slide">
+              <div className="service-box s-box4">
+                <i className="fa-solid fa-user-doctor"></i>
+                <strong>Lab Report</strong>
+                <p>A lab report gives users a lot of details about their test results. They're great for doctors who want to use this information to help diagnose.</p>
+                <a href="#">Get It!</a>
+              </div>
+            </div>
             <div className="swiper-slide">
               <div className="service-box s-box1">
                 <i className="fa-solid fa-tooth"></i>
@@ -88,14 +96,7 @@ const Fourtsks1 = ({}) => {
                 <a href="#">Get It!</a>
               </div>
             </div>
-            <div className="swiper-slide">
-              <div className="service-box s-box4">
-                <i className="fa-solid fa-user-doctor"></i>
-                <strong>Lab Report</strong>
-                <p>A lab report gives users a lot of details about their test results. They're great for doctors who want to use this information to help diagnose.</p>
-                <a href="#">Get It!</a>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

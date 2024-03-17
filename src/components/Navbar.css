@@ -17,15 +17,17 @@
   display: flex;
 }
 .kchbhi span{
+  position: relative;
+  top: 13px;
   color: #122853;
   font-weight: bolder;
   font-size: 1.3rem;
 }
 .kchbhi img{
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 60px;
   position: relative;
-  top: 0px;
+  top: 2px;
   left: -5px;
 }
 .menu{
