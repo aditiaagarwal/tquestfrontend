@@ -51,5 +51,5 @@ const Profile = ({}) => {
     </div>
   );
 };
-document.body.style.backgroundColor = "#133b48";
+document.body.style.backgroundColor = "rgb(172 197 216)";
 export default Profile;
