@@ -19,7 +19,7 @@ const Serviceinfo=({})=>{
           </div>
           <div className="w-info-text">
             <strong>24/7 Advanced Care</strong>
-            <p>We are available whenever you need us.</p>
+            <p>Available whenever you need us.</p>
           </div>
         </div>
         <div className="w-info-box w-i-box3">

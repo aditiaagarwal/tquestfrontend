@@ -9,7 +9,6 @@ import Footer from "./Footer";
 // import {useNavigate} from "react-router-dom";
 const Homepage= ({}) => {
   return (
-    
       <>
         <Link />
         <Topbox />

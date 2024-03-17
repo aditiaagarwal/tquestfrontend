@@ -7,7 +7,7 @@ const Footer = ({}) => {
         <div className="footer-container">
           <div className="footer-company-box">
             <a href="#" className="logo">
-              <span>Logic Legion</span>
+              <span>Wellness Analytics</span>
             </a>
             <p>Join us and have a great medical experience ahead!</p>
             <div className="footer-social">
@@ -78,8 +78,8 @@ const Footer = ({}) => {
           </div>
         </div>
         <div className="footer-bottom">
-          <span className="footer-owner">Made By -LogicLegion</span>
-          <span className="copyright">© Copyright 2024-LogicLegion</span>
+          <span className="footer-owner">Made By -Wellness Analytics</span>
+          <span className="copyright">© Copyright 2024-Wellness Analytics</span>
         </div>
       </footer>
     </div>

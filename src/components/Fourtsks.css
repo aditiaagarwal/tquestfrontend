@@ -182,3 +182,26 @@ body {
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
 }
+
+.swiper-button-next,
+.swiper-button-prev{
+  position: static !important;
+  transform: translate(0,0);
+  margin: 10px !important;
+}
+.service-slide-btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+.swiper-button-next::after,
+.swiper-button-prev::after{
+  font-size: 25px !important;
+  font-weight: 800;
+  color: #122853;
+}
+.services-box-container{
+  max-width: 1200px;
+  width: 90%;
+  margin: 40px auto;
+  overflow: hidden;
+}

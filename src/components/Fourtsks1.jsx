@@ -1,279 +1,106 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import Swiper from 'swiper';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-
-import 'swiper/css/effect-coverflow';
-
-import 'swiper/css/pagination';
-
-import 'swiper/css/navigation';
-
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
-
-
-
-function Fourtsks1() {
-
+const Fourtsks1 = ({}) => {
   useEffect(() => {
-
-    const initializeSwiper = () => {
-
-      if (
-
-        typeof window !== "undefined" &&
-
-        typeof window.Swiper !== "undefined"
-
-      ) {
-
-        return new window.Swiper(".swiper-container", {
-
+    const swiper = new Swiper('.mySwiperservices', {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        700: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
           slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+    });
+    document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+      swiper.slidePrev();
+    });
 
-          spaceBetween: 10,
-
-          centeredSlides: true,
-
-          loop: true,
-
-          navigation: {
-
-            nextEl: ".swiper-button-next",
-
-            prevEl: ".swiper-button-prev",
-
-          },
-
-          breakpoints: {
-
-            700: {
-
-              slidesPerView: 2,
-
-              spaceBetween: 40,
-
-            },
-
-            1024: {
-
-              slidesPerView: 3,
-
-              spaceBetween: 50,
-
-            },
-
-          },
-
-          effect: 'coverflow',
-
-          grabCursor: true,
-
-          coverflowEffect: {
-
-            rotate: 0,
-
-            stretch: 0,
-
-            depth: 100,
-
-            modifier: 2.5,
-
-         },
-
-          pagination: {
-
-            el: '.swiper-pagination',
-
-            clickable: true,
-
-          },
-
-          navigation: {
-
-            nextEl: '.swiper-button-next',
-
-            prevEl: '.swiper-button-prev',
-
-            clickable: true,
-
-          },
-
-        });
-
+    document.querySelector('.swiper-button-next').addEventListener('click', () => {
+      swiper.slideNext();
+    });
+    swiper.on('slideChange', () => {
+      const prevButton = document.querySelector('.swiper-button-prev');
+      const nextButton = document.querySelector('.swiper-button-next');
+      if (swiper.isBeginning) {
+        prevButton.classList.add('swiper-button-disabled');
+      } else {
+        prevButton.classList.remove('swiper-button-disabled');
       }
-
+      if (swiper.isEnd) {
+        nextButton.classList.add('swiper-button-disabled');
+      } else {
+        nextButton.classList.remove('swiper-button-disabled');
+      }
+    });
+    return () => {
+      swiper.destroy();
     };
-
-
-
-    initializeSwiper();
-
-
-
   }, []);
 
-
-
   return (
-
-    <div className="container">
-
-      <h1 className="heading">Our Services</h1>
-
-      <div className="swiper-container">
-
-        <div className="swiper-wrapper">
-
-          <Swiper
-
-            grabCursor={true}
-
-            centeredSlides={true}
-
-            loop={true}
-
-            effect={'coverflow'}
-
-            coverflowEffect={{
-
-              rotate: 0,
-
-              stretch: 0,
-
-              depth: 100,
-
-              modifier: 2.5,
-
-            }}
-
-            pagination={{ el: '.swiper-pagination', clickable: true }}
-
-            navigation={{
-
-              nextEl: '.swiper-button-next',
-
-              prevEl: '.swiper-button-prev',
-
-              clickable: true,
-
-            }}
-
-            modules={[EffectCoverflow, Pagination, Navigation]}
-
-          >
-
-            <SwiperSlide>
-
-              <div className="service-box s-box1">
-
-                <i className="fa-solid fa-tooth" />
-
-                <strong>Smart Interpretation</strong>
-
-                <p>
-
-                  Smart Interpretation sub-feature that goes beyond simply
-
-                  presenting your data. It analyzes your results.
-
-                </p>
-
-                <a href="#">Get It!</a>
-
-              </div>
-
-            </SwiperSlide>
-
-            <SwiperSlide>
-
-              <div className="service-box s-box2">
-
-                <i className="fa-solid fa-eye"></i><strong>Body Chart</strong>
-
-                <p>
-
-                  The Health Report body chart displays a human body picture,
-
-                  alongside your key health data.
-
-                </p>
-
-                <a href="#">Get It!</a>
-
-              </div>
-
-            </SwiperSlide>
-
-            <SwiperSlide>
-
-              <div className="service-box s-box3">
-
-                <i className="fa-solid fa-face-smile"></i>
-
-                <strong>Visual Info</strong>
-
-                <p>
-
-                  The Smart Report has a "Health Advisory" feature that shows
-
-                  medical advice into an engaging and actionable visual
-
-                  experience.
-
-                </p>
-
-                <a href="#">Get It!</a>
-
-              </div>
-
-            </SwiperSlide>
-
-            <SwiperSlide>
-
-              <div className="service-box s-box4">
-
-                <i className="fa-solid fa-user-doctor"></i>
-
-                <strong>Lab Report</strong>
-
-                <p>
-
-                  A lab report gives users a lot of details about their test
-
-                  results. They're great for doctors who want to use this
-
-                  information to help diagnose.
-
-                </p>
-
-                <a href="#">Get It!</a>
-
-              </div>
-
-            </SwiperSlide>
-
-            {/* Add more SwiperSlide components for additional slides */}
-
-          </Swiper>
-
+    <div>
+      <div className="services-heading">
+        <div className="services-heading-text">
+          <strong>Our Services</strong>
+          <h2>High Quality Services For You</h2>
         </div>
-
-        <div className="swiper-button-prev"></div>
-
-        <div className="swiper-button-next"></div>
-
-        <div className="swiper-pagination"></div>
-
+        <div className="service-slide-btns">
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+        </div>
       </div>
 
+      <div className="services-box-container">
+        <div className="swiper mySwiperservices">
+          <div className="swiper-wrapper">
+            <div className="swiper-slide">
+              <div className="service-box s-box1">
+                <i className="fa-solid fa-tooth"></i>
+                <strong>Smart Interpretation</strong>
+                <p>Smart Interpretation sub-feature that goes beyond simply presenting your data. It analyzes your results.</p>
+                <a href="#">Get It!</a>
+              </div>
+            </div>
+
+            <div className="swiper-slide">
+              <div className="service-box s-box2">
+                <i className="fa-solid fa-eye"></i>
+                <strong>Body Chart</strong>
+                <p>The Health Report body chart displays a human body picture, alongside your key health data.</p>
+                <a href="#">Get It!</a>
+              </div>
+            </div>
+            <div className="swiper-slide">
+              <div className="service-box s-box3">
+                <i className="fa-solid fa-face-smile"></i>
+                <strong>Visual Info</strong>
+                <p>The Smart Report has a "Health Advisory" feature that shows medical advice into an engaging and actionable visual experience.</p>
+                <a href="#">Get It!</a>
+              </div>
+            </div>
+            <div className="swiper-slide">
+              <div className="service-box s-box4">
+                <i className="fa-solid fa-user-doctor"></i>
+                <strong>Lab Report</strong>
+                <p>A lab report gives users a lot of details about their test results. They're great for doctors who want to use this information to help diagnose.</p>
+                <a href="#">Get It!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
   );
-
-}
-
-
+};
 
 export default Fourtsks1;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logoImage from '../images/Logo.avif';
+import logoImage from '../images/WellnessAnalytics.png';
 
 import './Navbar.css';
 import {useNavigate} from "react-router-dom"
@@ -7,9 +7,7 @@ const Navbar = ({}) => {
   const navigate=useNavigate()
   // const handleLoginClick = () => {
   //   navigate('/login/')
-    
   //   alert("Login button clicked");
-
   // };
   const [customerName, setCustomerName] = useState('');
   useEffect(() => {
@@ -24,10 +22,10 @@ const Navbar = ({}) => {
       localStorage.removeItem('name'); // Remove the customer name from local storage
       localStorage.removeItem('bookingId');
       setCustomerName(''); // Clear the customer name in state
-      alert("Logged out successfully");
+      // alert("Logged out successfully");
     } else {
       navigate('/login/');
-      alert("Login button clicked");
+      // alert("Login button clicked");
     }
   };
   return (
@@ -41,7 +39,7 @@ const Navbar = ({}) => {
           <a href="index.html" className="logo">
             <img src={logoImage} alt="" />
           </a>
-          <span>Logic Legion</span>
+          <span>Wellness Analytics</span>
         </div>
         <ul className="menu">
           <li>
