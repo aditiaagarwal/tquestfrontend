@@ -42,3 +42,26 @@
 .w-i-box3 .w-info-icon{
   background-color: #d4e7ff;
 }
+
+.what-we-provide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.w-info-box {
+  width: calc(33.33% - 20px); /* Adjust the width as needed */
+  margin: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  .w-info-box {
+    width: calc(50% - 20px); /* Two boxes per row */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 60px;
+  }
+}

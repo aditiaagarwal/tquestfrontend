@@ -1,5 +1,5 @@
 import React from 'react';
-import LeftGreenBox from './LeftGreenBox';
+import LeftGreenBox from './LeftPurpleBox';
 import RightBlueBox from './RightBlueBox';
 import './TwoBoxes.css';
 const TwoBoxes=({})=>{

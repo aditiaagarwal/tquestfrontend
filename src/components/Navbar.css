@@ -63,3 +63,15 @@
   display: flex;
   padding: 10px;
 }
+
+
+ul.menu {
+  list-style-type: none; /* Remove default marker */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+ul.menu li {
+  display: inline-block; /* Display list items horizontally */
+  margin-right: 20px; /* Add spacing between list items */
+}

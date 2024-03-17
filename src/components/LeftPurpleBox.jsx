@@ -4,7 +4,7 @@ const LeftGreenBox=({})=>{
   return(
     // <div>
       <div className="why-choose-us-left">
-          <h3>Why Choose Us?</h3>
+          <h3>What sets us apart?</h3>
           <div className="why-choose-box-container">
             <div className="why-choose-box">
               <i className="fa-solid fa-check" />

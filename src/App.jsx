@@ -1,24 +1,20 @@
 import React from "react";
-import "./App.css";
-import Testimonial from "./components/Testimonial";
-import Topbox from "./components/TopBox";
-import Link from "./components/Link";
-import Serviceinfo from "./components/Serviceinfo";
-import Ourservices from "./components/Ourservices";
-import TwoBoxes from "./components/TwoBoxes";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
+import Login1 from "./components/Login1";
+import Homepage from "./components/Homepage";
+
 function App() {
   return (
-    <>
-      <Link/>
-      <Topbox />
-      <Serviceinfo/>
-      <Ourservices/>
-      <TwoBoxes/>
-      <Testimonial/>
-      <Footer/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login1 />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+
+
