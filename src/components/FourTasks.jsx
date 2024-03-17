@@ -12,10 +12,6 @@ const Serve = ({}) => {
           spaceBetween: 10,
           centeredSlides: true,
           loop: true,
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
           breakpoints: {
             700: {
               slidesPerView: 2,
@@ -25,6 +21,10 @@ const Serve = ({}) => {
               slidesPerView: 3,
               spaceBetween: 50,
             },
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
           },
         });
 

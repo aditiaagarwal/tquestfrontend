@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import Swiper from 'swiper';
+import {useNavigate} from "react-router-dom"
 
 const Fourtsks1 = ({}) => {
+  const navigate=useNavigate()
   useEffect(() => {
     const swiper = new Swiper('.mySwiperservices', {
       slidesPerView: 1,
@@ -46,6 +48,12 @@ const Fourtsks1 = ({}) => {
       swiper.destroy();
     };
   }, []);
+  const LabreportClick=()=>{
+    navigate('/labreport/')
+
+
+  }
+
 
   return (
     <div>
@@ -68,7 +76,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-tooth"></i>
                 <strong>Smart Interpretation</strong>
                 <p>Smart Interpretation sub-feature that goes beyond simply presenting your data. It analyzes your results.</p>
-                <a href="#">Get It!</a>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={() => window.location.href = '#'}>Get It!</button>
               </div>
             </div>
 
@@ -77,7 +85,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-eye"></i>
                 <strong>Body Chart</strong>
                 <p>The Health Report body chart displays a human body picture, alongside your key health data.</p>
-                <a href="#">Get It!</a>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={() => window.location.href = '#'}>Get It!</button>
               </div>
             </div>
             <div className="swiper-slide">
@@ -85,7 +93,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-face-smile"></i>
                 <strong>Visual Info</strong>
                 <p>The Smart Report has a "Health Advisory" feature that shows medical advice into an engaging and actionable visual experience.</p>
-                <a href="#">Get It!</a>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={() => window.location.href = '#'}>Get It!</button>
               </div>
             </div>
             <div className="swiper-slide">
@@ -93,7 +101,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-user-doctor"></i>
                 <strong>Lab Report</strong>
                 <p>A lab report gives users a lot of details about their test results. They're great for doctors who want to use this information to help diagnose.</p>
-                <a href="#">Get It!</a>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={LabreportClick}>Get It!</button>
               </div>
             </div>
           </div>
