@@ -4,6 +4,7 @@ import './App.css';
 import Login1 from "./components/Login1";
 import Homepage from "./components/Homepage";
 import Labreport  from "./components/Labreport";
+import Smartinterpretation from "./components/Smartinterpretation";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Homepage/>} />
         <Route path="/login" element={<Login1 />} />
         <Route path="/labreport" element={<Labreport/>} />
+        <Route path="/smartinterpretation" element={<Smartinterpretation/>} />
       </Routes>
     </Router>
   );

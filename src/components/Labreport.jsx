@@ -12,8 +12,11 @@ import {
   MDBTableHead,
   MDBTableBody,
 } from 'mdb-react-ui-kit';
-
+import Link from "./Link";
+import Topbox from "./TopBox";
 import Navbar from './Navbar';
+
+
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import axios from 'axios';
 
@@ -29,7 +32,7 @@ const Labreport = () => {
    
     const fetchData = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/api/bookings?booking_id=${booking_id}`);
+          const response = await axios.get(`http://10.81.73.1:3000/api/bookings?booking_id=${booking_id}`);
           const parsedData = response.data.map(item => ({
             ...item,
             test_values: JSON.parse(item.test_values) 
@@ -57,7 +60,9 @@ const Labreport = () => {
 
   return (
     <>
-      <Navbar></Navbar>
+    <Navbar></Navbar>
+     <Link></Link>
+     
      
       <MDBCard style={{ backgroundColor: 'white' }}>
         <MDBCardHeader style={{fontSize:'30px' ,fontFamily:'Sans-serif',fontWeight:'bold'}}>LAB REPORT</MDBCardHeader>
@@ -78,7 +83,7 @@ const Labreport = () => {
         <div key={index }  style={{ marginTop: '40px' }} >
           <MDBCard style={{ backgroundColor: '#B9D9EB' }}>
       <MDBCardBody >
-      <MDBCardTitle style={{ fontWeight: 'bold', color: 'red', fontSize: '24px', textAlign: 'center' }}>{item['test_name']}</MDBCardTitle>
+      <MDBCardTitle style={{ fontWeight: 'bold', color: 'blue', fontSize: '24px', textAlign: 'center' }}>{item['test_name']}</MDBCardTitle>
       <MDBTable>
                 <MDBTableHead>
                   <tr>
@@ -87,6 +92,7 @@ const Labreport = () => {
                     <th style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>Lower Bound</th>
                     <th style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>Display Value</th>
                     <th style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>Upper Bound</th>
+                    <th style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>Unit</th>
                   </tr>
                 </MDBTableHead>
                 <MDBTableBody>
@@ -97,6 +103,7 @@ const Labreport = () => {
                       <td style={{fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>{value['lower_bound']}</td>
                       <td style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>{value['display_value']}</td>
                       <td style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>{value['upper_bound']}</td>
+                      <td style={{ fontWeight: 'bold', color: 'black', fontSize: '20px', textAlign: 'center' }}>{value['unit']}</td>
                     </tr>
                   ))}
                 </MDBTableBody>

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Swiper from 'swiper';
 import {useNavigate} from "react-router-dom"
+import Smartinterpretation from './Smartinterpretation';
+
 
 const Fourtsks1 = ({}) => {
   const navigate=useNavigate()
@@ -53,6 +55,10 @@ const Fourtsks1 = ({}) => {
 
 
   }
+  const SmartinterpretationClick=()=>{
+    navigate('/smartinterpretation/')
+
+  }
 
 
   return (
@@ -76,7 +82,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-tooth"></i>
                 <strong>Smart Interpretation</strong>
                 <p>Smart Interpretation sub-feature that goes beyond simply presenting your data. It analyzes your results.</p>
-                <button style={{ backgroundColor: '#7393B3' }} onClick={() => window.location.href = '#'}>Get It!</button>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={(SmartinterpretationClick)}>Get It!</button>
               </div>
             </div>
 
