@@ -8,11 +8,10 @@ import {
   MDBCardTitle,
 } from 'mdb-react-ui-kit';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import "./smartinterpretation.css"
+import { PieChart } from '@mui/x-charts/PieChart';
 
 const Smartinterpretation = () => {
   const bookingId = localStorage.getItem('bookingId');
@@ -44,9 +43,9 @@ const Smartinterpretation = () => {
       const test_name = data[i]['test_name'];
       for (let j = 0; j < data[i]['test_values'].length; j++) {
         const parameter_value = data[i]['test_values'][j]['parameter_name'];
-        const parameterValue = parseInt(data[i]['test_values'][j]['parameter_value'], 10);
-        const lowerBound = parseInt(data[i]['test_values'][j]['lower_bound'], 10);
-        const upperBound = parseInt(data[i]['test_values'][j]['upper_bound'], 10);
+        const parameterValue = parseFloat(data[i]['test_values'][j]['parameter_value'], 10);
+        const lowerBound = parseFloat(data[i]['test_values'][j]['lower_bound'], 10);
+        const upperBound = parseFloat(data[i]['test_values'][j]['upper_bound'], 10);
 
         if (!isNaN(parameterValue) && !isNaN(lowerBound) && !isNaN(upperBound)) {
           if (!processedData[test_name]) {
@@ -94,11 +93,11 @@ const Smartinterpretation = () => {
     ));
   };
 
+ 
   return (
     <>
       <Navbar />
       <Link />
-     
       {Object.keys(processedData).map((testName, index) => (
         <div key={index} style={{ marginTop: '40px' }}>
           <MDBCard style={{ backgroundColor: '#B9D9EB' }}>
@@ -107,32 +106,39 @@ const Smartinterpretation = () => {
               <ul>
                 {processedData[testName].map((item, idx) => (
                   <li key={idx}>
-                    <br></br>
-                    <Card sx={{ maxWidth: 1000, margin: 'auto', textAlign: 'center' ,background:'white' }}>
-     
-              <CardContent>
-              <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial',fontSize:'40' }}>
-          {item.parameter_value}
-              </Typography>
-        <Typography variant="body2" color="text.secondary">
-        <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial',fontSize:'20' }}>
-          INTERPRETATION
-              </Typography >
-                    <ul>
-                    <div key={idx} style={{ border: '2px solid #2E2787', borderRadius: '10px', padding: '10px', margin: '10px' }}>
-                        <Typography gutterBottom variant="h5" component="div" style={{ color: 'blue', fontFamily: 'Arial', fontSize: '16px' }}>
-                          {breakJokeResponse(jokeResponses[`${testName}_${item.parameter_value}`] || 'Loading Interpretation...')}
+                    <br />
+                    <Card sx={{ maxWidth: 1000, margin: 'auto', textAlign: 'center', background: 'white' }}>
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '40' }}>
+                          {item.parameter_value}
                         </Typography>
-                    </div>
-
-                      
-                    </ul>
-         
-        </Typography>
-      </CardContent>
-     
-    </Card>
-                    
+                        <PieChart
+      series={[
+        {
+          data: [
+            { id: 0, value: item.parameterValue, label: 'Your Result' },
+            { id: 1, value: item.lowerBound, label: 'Lower Bound' },
+            { id: 2, value: item.upperBound, label: 'Upper Bound' },
+          ],
+        },
+      ]}
+      width={400}
+      height={200}
+    />
+                        <Typography variant="body2" color="text.secondary">
+                          <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '20' }}>
+                            INTERPRETATION
+                          </Typography>
+                          <ul>
+                            <div key={idx} style={{ border: '2px solid #2E2787', borderRadius: '10px', padding: '10px', margin: '10px' }}>
+                              <Typography gutterBottom variant="h5" component="div" style={{ color: 'blue', fontFamily: 'Arial', fontSize: '16px' }}>
+                                {breakJokeResponse(jokeResponses[`${testName}_${item.parameter_value}`] || 'Loading Interpretation...')}
+                              </Typography>
+                            </div>
+                          </ul>
+                        </Typography>
+                      </CardContent>
+                    </Card>
                   </li>
                 ))}
               </ul>
