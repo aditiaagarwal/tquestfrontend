@@ -42,7 +42,7 @@ const Login1 = ({}) => {
             <form>
               <h2 className="login-h2">Login</h2>
               <div className="inputbox">
-                <ion-icon name="mail-outline" /> <input type="text" required="" name="name" value={formData.name} onChange={handleChange} />
+                <ion-icon name="mail-outline"/> <input type="text" required="" name="name" value={formData.name} onChange={handleChange}/>
                 <label>Your Name</label>
               </div>
               <div className="inputbox">

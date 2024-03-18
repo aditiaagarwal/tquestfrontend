@@ -1,37 +1,41 @@
 import React, { useEffect, useState } from "react";
 import logoImage from '../images/WellnessAnalytics.png';
-
+import { useNavigate } from "react-router-dom";
 import './Navbar.css';
-import {useNavigate} from "react-router-dom"
-const Navbar = ({}) => {
-  const navigate=useNavigate()
-  // const handleLoginClick = () => {
-  //   navigate('/login/')
-  //   alert("Login button clicked");
-  // };
+import Link from "./Link";
+const Navbar = () => {
+  const navigate = useNavigate();
   const [customerName, setCustomerName] = useState('');
+
   useEffect(() => {
     const storedName = localStorage.getItem('name');
     if (storedName) {
       setCustomerName(storedName);
     }
   }, []);
+
   const handleLoginClick = () => {
     const storedName = localStorage.getItem('name');
     if (storedName) {
-      localStorage.removeItem('name'); // Remove the customer name from local storage
+      localStorage.removeItem('name');
       localStorage.removeItem('bookingId');
-      setCustomerName(''); // Clear the customer name in state
-      // alert("Logged out successfully");
+      setCustomerName('');
     } else {
       navigate('/login/');
-      // alert("Login button clicked");
     }
   };
+
+  const handleProfileClick = () => {
+    const storedName = localStorage.getItem('name');
+    if (storedName) {
+      navigate('/profile/'); // Navigate to the profile page only if not logged in
+    }
+  };
+
   return (
     <div>
+      <Link></Link>
       <nav className="navigation">
-        {/* <input type="checkbox" className="menu-btn" id="menu-btn" /> */}
         <label htmlFor="menu-btn" className="menu-icon">
           <span className="nav-icon" />
         </label>
@@ -53,11 +57,12 @@ const Navbar = ({}) => {
           </li>
         </ul>
         <div className="small-nv">
-        <button className="nav-appointment-btn" >{customerName ? customerName : 'View Your Profile'}</button>
-        <button className="nav-appointment-btn" onClick={handleLoginClick}>{customerName ? 'Logout' : 'Login'}</button>
+          <button className="nav-appointment-btn" onClick={handleProfileClick}>{customerName ? customerName : 'View Your Profile'}</button>
+          <button className="nav-appointment-btn" onClick={handleLoginClick}>{customerName ? 'Logout' : 'Login'}</button>
         </div>
       </nav>
     </div>
   );
 };
+
 export default Navbar;

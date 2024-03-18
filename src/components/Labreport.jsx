@@ -65,7 +65,6 @@ const Labreport = () => {
           </div>
         </MDBCardBody>
       </MDBCard>
-
       {data.map((item, index) => (
         <div key={index} style={{ marginTop: '40px' }}>
           <MDBCard style={{ backgroundColor: '#B9D9EB' }}>
