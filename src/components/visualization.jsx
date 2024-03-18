@@ -1,37 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import { Transition } from "react-transition-group"; // Import Transition
 import { MDBCard, MDBCardBody, MDBCardTitle } from "mdb-react-ui-kit";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
 import Link from "./Link";
 import { BarChart } from "@mui/x-charts/BarChart";
 
 import "./visualization.css";
 
 const BarCharts = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const bookingId = localStorage.getItem("bookingId");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [jokeResponses, setJokeResponses] = useState({});
-  const [firstEffectCompleted, setFirstEffectCompleted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +27,6 @@ const BarCharts = () => {
         }));
         setData(parsedData);
         setLoading(false);
-        setFirstEffectCompleted(true); // Set flag to true after completing the API call
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -102,8 +83,8 @@ const BarCharts = () => {
       <Navbar />
       <Link />
       {Object.keys(processedData).map((testName, index) => (
-        <div key={index} style={{ marginTop: "40px" }}>
-          <MDBCard style={{ backgroundColor: "#B9D9EB" }}>
+        <div key={index} style={{ marginTop: "40px", display: "flex", justifyContent: "center" }}>
+          <MDBCard style={{ backgroundColor: "#E1EBEE", width: "1000px", display: "flex", justifyContent: "space-between" }}>
             <MDBCardBody>
               <MDBCardTitle
                 style={{
@@ -119,89 +100,75 @@ const BarCharts = () => {
                 {processedData[testName].map((item, idx) => (
                   <li key={idx}>
                     <br />
-                    <Card
-                      sx={{
-                        maxWidth: 1000,
-                        margin: "auto",
-                        textAlign: "center",
-                        background: "white",
-                      }}
-                    >
-                      <CardContent
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                        }}
-                      >
-                        <div>
-                          <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="div"
-                            style={{
-                              color: "black",
-                              fontWeight: "bold",
-                              fontFamily: "Arial",
-                              fontSize: "40",
-                            }}
-                          >
-                            {item.parameter_value}
-                          </Typography>
-                          <BarChart
-                            xAxis={[
-                              {
-                                scaleType: "band",
-                                data: [item.parameter_value],
-                              },
-                            ]}
-                            series={[
-                              { data: [item.lowerBound] },
-                              { data: [item.parameterValue] },
-                              { data: [item.upperBound] },
-                            ]}
-                            width={500}
-                            height={300}
-                          />
-                        </div>
-                        <Button
-                          variant="outlined"
-                          onClick={handleClickOpen}
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <div>
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
                           style={{
-                            backgroundColor: "#7CB9E8",
-                            width: "300px",
                             color: "black",
+                            fontWeight: "bold",
+                            fontFamily: "Arial",
+                            fontSize: "40",
                           }}
                         >
-                          INFER RESULTS
-                        </Button>
-                        <Dialog
-                          open={open}
-                          onClose={handleClose}
-                          aria-labelledby="alert-dialog-title"
-                          aria-describedby="alert-dialog-description"
+                          {item.parameter_value}
+                        </Typography>
+                        <BarChart
+                          xAxis={[
+                            {
+                              scaleType: "band",
+                              data: [item.parameter_value],
+                            },
+                          ]}
+                          series={[
+                            { data: [item.lowerBound] },
+                            { data: [item.parameterValue] },
+                            { data: [item.upperBound] },
+                          ]}
+                          width={500}
+                          height={300}
+                        />
+                      </div>
+                      <div>
+                      <Card
+                          style={{
+                            width: "400px",
+                            height: "200px",
+                            marginTop: "50px",
+                            backgroundColor: "white",
+                            border: "4px solid black", 
+                            borderRadius: "30px", 
+                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                                                  }}
                         >
-                          <DialogTitle id="alert-dialog-title">
-                            {"THIS IS WHAT YOUR GRAPH SHOWS"}
-                          </DialogTitle>
-                          <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                              {item.parameterValue < item.lowerBound
-                                ? "Your value is less than the desired value. Please see Smart Interpretation for outcome."
-                                : item.parameterValue > item.upperBound
-                                ? "Your value is higher than the desired value. Please refer to Smart Interpretation."
-                                : "Your value is within the desired range."}
-                            </DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={handleClose}>Disagree</Button>
-                            <Button onClick={handleClose} autoFocus>
-                              Agree
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
-                      </CardContent>
-                    </Card>
+                          <CardContent>
+                          <Typography
+                            variant="h6"
+                            style={{
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              fontSize: "30px",
+                              fontFamily: "Arial",
+                            }}
+                          >
+                            Graph Interpretation
+                          </Typography>
+                            <Typography>
+                             
+                            {item.lowerBound > item.parameterValue
+                              ? <span style={{ color: 'red', fontSize: '50', textAlign: 'center',marginTop:'20' ,fontWeight: "bold",}}>WARNING: Your value is less than the desired value. Please see Smart Interpretation for outcome.</span>
+                              : item.parameterValue > item.upperBound
+                              ? <span style={{ color: 'red', fontSize: '50', textAlign: 'center',marginTop:'20',fontWeight: "bold" }}>WARNING: Your value is higher than the desired value. Please refer to Smart Interpretation.</span>
+                              : <span style={{ color: '#228b22',fontSize: '50', textAlign: 'center',marginTop:'50',fontWeight: "bold"}}>NORMAL: Your value is within the desired range.No need to worry!</span>
+                            }
+                            </Typography>
+                          </CardContent>
+                        </Card>
+
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>
