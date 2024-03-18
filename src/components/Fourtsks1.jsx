@@ -59,6 +59,10 @@ const Fourtsks1 = ({}) => {
     navigate('/smartinterpretation/')
 
   }
+  const handleVisualClick=()=>{
+    navigate('/barcharts/')
+
+  }
 
 
   return (
@@ -99,7 +103,7 @@ const Fourtsks1 = ({}) => {
                 <i className="fa-solid fa-face-smile"></i>
                 <strong>Visual Info</strong>
                 <p>The Smart Report has a "Health Advisory" feature that shows medical advice into an engaging and actionable visual experience.</p>
-                <button style={{ backgroundColor: '#7393B3' }} onClick={() => window.location.href = '#'}>Get It!</button>
+                <button style={{ backgroundColor: '#7393B3' }} onClick={handleVisualClick }>Get It!</button>
               </div>
             </div>
             <div className="swiper-slide">

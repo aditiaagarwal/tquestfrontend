@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from "./Navbar";
 import axios from 'axios';
-import Link from './Link';
-import Navbar from './Navbar';
+import GraphBar from "./GraphBar.jsx";
+import './visualization.css';
 import {
   MDBCard,
   MDBCardBody,
@@ -10,15 +11,12 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import "./smartinterpretation.css"
-import { PieChart } from '@mui/x-charts/PieChart';
-
-const Smartinterpretation = () => {
+import Link from "./Link";
+const BarCharts = ({}) => {
   const bookingId = localStorage.getItem('bookingId');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [jokeResponses, setJokeResponses] = useState({});
-  const [firstEffectCompleted, setFirstEffectCompleted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +28,6 @@ const Smartinterpretation = () => {
         }));
         setData(parsedData);
         setLoading(false);
-        setFirstEffectCompleted(true); // Set flag to true after completing the API call
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -65,38 +62,9 @@ const Smartinterpretation = () => {
     return processedData;
   };
   const processedData = processValues();
+                      
+  
 
-  useEffect(() => {
-    const fetchJokes = async () => {
-      try {
-        if (firstEffectCompleted) { // Check if the first useEffect has completed
-          const jokes = {};
-          for (const testName in processedData) {
-            for (const item of processedData[testName]) {
-              const response = await axios.get(`http://10.81.73.1:3000/api/ai?text=for my testname ${testName} my ${item.parameter_value} is ${item.parameterValue} and upper bound is ${item.upperBound} lower bound is ${item.lowerBound} summerize test,potential concersn,health adivisory each in 1 line`);
-              jokes[`${testName}_${item.parameter_value}`] = response.data.text;
-            }
-          }
-          setJokeResponses(jokes);
-        }
-      } catch (error) {
-        console.error('Error fetching jokes:', error);
-      }
-    };
-
-    fetchJokes();
-  }, [firstEffectCompleted]); // Only run the effect when firstEffectCompleted or processedData changes
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  const breakJokeResponse = (responseText) => {
-    return responseText.split('* ').map((point, index) => (
-      <li key={index}>{point.trim()}</li>
-    ));
-  };
- 
   return (
     <>
       <Navbar />
@@ -115,31 +83,10 @@ const Smartinterpretation = () => {
                         <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '40' }}>
                           {item.parameter_value}
                         </Typography>
-                        <PieChart
-                          series={[
-                            {
-                              data: [
-                                { id: 0, value: item.parameterValue, label: 'Your Result' },
-                                { id: 1, value: item.lowerBound, label: 'Lower Bound' },
-                                { id: 2, value: item.upperBound, label: 'Upper Bound' },
-                              ],
-                            },
-                          ]}
-                          width={400}
-                          height={200}
-                        />
-                        <Typography variant="body2" color="text.secondary">
-                          <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Arial', fontSize: '20' }}>
-                            INTERPRETATION
-                          </Typography>
-                          <ul>
-                            <div key={idx} style={{ border: '2px solid #2E2787', borderRadius: '10px', padding: '10px', margin: '10px' }}>
-                              <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontFamily: 'Arial', fontSize: '16px' }}>
-                                {breakJokeResponse(jokeResponses[`${testName}_${item.parameter_value}`] || 'Loading Interpretation...')}
-                              </Typography>
-                            </div>
-                          </ul>
-                        </Typography>
+
+                        <div className="graph-center">
+                        <GraphBar/>
+                        </div>
                       </CardContent>
                     </Card>
                   </li>
@@ -153,4 +100,4 @@ const Smartinterpretation = () => {
   );
 };
 
-export default Smartinterpretation;
+export default BarCharts;
