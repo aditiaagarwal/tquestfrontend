@@ -18,6 +18,7 @@ const Smartinterpretation = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [jokeResponses, setJokeResponses] = useState({});
+  const [firstEffectCompleted, setFirstEffectCompleted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,7 @@ const Smartinterpretation = () => {
         }));
         setData(parsedData);
         setLoading(false);
+        setFirstEffectCompleted(true); // Set flag to true after completing the API call
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -67,21 +69,23 @@ const Smartinterpretation = () => {
   useEffect(() => {
     const fetchJokes = async () => {
       try {
-        const jokes = {};
-        for (const testName in processedData) {
-          for (const item of processedData[testName]) {
-            const response = await axios.get(`http://localhost:3000/api/ai?text=for my testname ${testName} my ${item.parameter_value} is ${item.parameterValue} and upper bound is ${item.upperBound} lower bound is ${item.lowerBound} summerize test,potential concersn,health adivisory each in 1 line`);
-            jokes[`${testName}_${item.parameter_value}`] = response.data.text;
+        if (firstEffectCompleted) { // Check if the first useEffect has completed
+          const jokes = {};
+          for (const testName in processedData) {
+            for (const item of processedData[testName]) {
+              const response = await axios.get(`http://localhost:3000/api/ai?text=for my testname ${testName} my ${item.parameter_value} is ${item.parameterValue} and upper bound is ${item.upperBound} lower bound is ${item.lowerBound} summerize test,potential concersn,health adivisory each in 1 line`);
+              jokes[`${testName}_${item.parameter_value}`] = response.data.text;
+            }
           }
+          setJokeResponses(jokes);
         }
-        setJokeResponses(jokes);
       } catch (error) {
         console.error('Error fetching jokes:', error);
       }
     };
 
     fetchJokes();
-  }, [processedData]); // Only run the effect when processedData changes
+  }, [firstEffectCompleted]); // Only run the effect when firstEffectCompleted or processedData changes
 
   if (loading) {
     return <div>Loading...</div>;
@@ -92,7 +96,6 @@ const Smartinterpretation = () => {
       <li key={index}>{point.trim()}</li>
     ));
   };
-
  
   return (
     <>
@@ -131,7 +134,7 @@ const Smartinterpretation = () => {
                           </Typography>
                           <ul>
                             <div key={idx} style={{ border: '2px solid #2E2787', borderRadius: '10px', padding: '10px', margin: '10px' }}>
-                              <Typography gutterBottom variant="h5" component="div" style={{ color: 'blue', fontFamily: 'Arial', fontSize: '16px' }}>
+                              <Typography gutterBottom variant="h5" component="div" style={{ color: 'black', fontFamily: 'Arial', fontSize: '16px' }}>
                                 {breakJokeResponse(jokeResponses[`${testName}_${item.parameter_value}`] || 'Loading Interpretation...')}
                               </Typography>
                             </div>
